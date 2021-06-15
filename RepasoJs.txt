@@ -1,0 +1,2 @@
+Manejo de los tipos de datos básicos (number, string, array/object, boolean, function)
+Promesas / Async / Await

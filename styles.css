@@ -1,0 +1,40 @@
+:root {
+	--primaryColor: #ff1744;
+	--primaryLightColor: #ff616f;
+	--primaryDarkColor: #c4001d;
+	--secondaryColor: #ffcdd2;
+	--secondaryLightColor: #ffffff;
+	--secondaryDarkColor: #cb9ca1;
+	--primaryTextColor: #000000;
+	--secondaryTextColor: #000000;
+}
+
+#items {
+	display: flex;
+	flex-direction: column;
+
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+#items .mdl-card {
+	width: 100%;
+	margin-bottom: 20px;
+
+	box-shadow: -5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: -5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: -5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+#items .mdl-card .mdl-card__title {
+  font-size: 20px;
+}
+
+#items .mdl-card .mdl-card__supporting-text {
+  font-size: 16px;
+}
+
+#items .mdl-card .mdl-card__actions .mdl-button {
+  float: right;
+  font-size: 16px;
+}
