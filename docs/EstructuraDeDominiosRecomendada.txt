@@ -1,0 +1,3 @@
+http://misitio/ => Página oficial de la empresa
+http://app.misitio/ => PWA
+http://api.misitio/ => Back-End

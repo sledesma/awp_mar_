@@ -1,0 +1,3 @@
+- Alejandra: Calendario Solar (Manejo de fechas 01-01-01 / 01-01-3000)
+- Diego: Juego de preguntas y respuestas
+- App para monitorear los precios de activos financieros

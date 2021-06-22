@@ -1,0 +1,7 @@
+JS vanilla *
+jQuery
+Angular JS
+-----------
+Vue
+React
+Angular

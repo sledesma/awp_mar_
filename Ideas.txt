@@ -1,3 +1,0 @@
-  <!--
-    - Alejandra: Calendario Solar (Manejo de fechas 01-01-01 / 01-01-3000)
-  -->
