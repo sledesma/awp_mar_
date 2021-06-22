@@ -1,3 +1,22 @@
 http://misitio/ => Página oficial de la empresa
 http://app.misitio/ => PWA
 http://api.misitio/ => Back-End
+
+
+http://calendariosolar.com/ => Cliente Pagina del producto
+http://app.calendariosolar.com/ => Cliente PWA
+http://api.calendariosolar.com/ =>  Servidor
+
+
+http://mitienda.com/ => Página para promocionar la tienda
+http://app.mitienda.com/ => Cliente PWA
+http://api.mitienda.com/ => Servidor (todo el catalogo, procesamientos, etc. etc.)
+
+
+client    +   server
+PWA            BBDD
+Landing        Lógica de Negocio
+Pag Comer      
+
+
+ALCANCE = ¿Que quiero hacer y para que? + ¿Como lo voy a hacer?
