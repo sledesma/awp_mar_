@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="destino"></div>
+
+		<script>
+			const bindings = {};
+			/*
+			bindings.nombre = {
+				value: 12,
+				change: function (nuevoValor) {
+					this.value = nuevoValor;
+          document.getElementById('destino').innerHTML = this.value;
+				},
+			};
+
+			bindings.nombre.change(13);
+      bindings.nombre.change(34);
+      */
+
+			/*
+      Object.defineProperty(bindings, 'nombre', {
+          get: function() {
+            return this.nombre;
+          },
+          set: function(nuevoValor) {
+            document.getElementById('destino').innerHTML = nuevoValor;
+            return nuevoValor;
+          }        
+      })
+      */
+
+			bindings.nombre = {
+				__value: "",
+				get val() {
+					return this.__value;
+				},
+				set val(nuevoValor) {
+					document.getElementById("destino").innerHTML = nuevoValor;
+					this.__value = nuevoValor;
+					return nuevoValor;
+				},
+			};
+
+			class Bindings {
+
+				create(nombre, setCallback) {
+					this[nombre] = {
+						__value: "",
+						get val() {
+							return this.__value;
+						},
+						set val(nuevoValor) {
+							setCallback(nuevoValor);
+							this.__value = nuevoValor;
+							return nuevoValor;
+						},
+					};
+				}
+
+			}
+
+			const b = new Bindings();
+
+      b.create('nombre', function(nuevoValor){
+        console.log(nuevoValor);
+      })
+
+      b.create('apellido', function(nuevoValor){
+        console.log('Cambiando apellido')
+      })
+		</script>
+	</body>
+</html>

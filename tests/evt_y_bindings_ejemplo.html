@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <div id="divContenido"></div>
+  <input type="text" id="txtTexto">
+  <button id="btnClick">ClickMe</button>
+  <div id="otro"></div>
+
+
+  <script>
+   
+    /**
+     * BINDINGS (de JS a HTML)
+    **/
+    const bindings = {};
+
+    bindings.contenidoDiv = {
+      __value__: '',
+      get valor() {
+        return this.__value__;
+      },
+      set valor(nuevoValor) {
+        document.getElementById('divContenido').innerHTML = nuevoValor;
+        document.getElementById('otro').innerHTML = nuevoValor;
+
+        this.__value__;
+        return nuevoValor;
+      }
+    }
+
+    /**
+     * EVENTOS (de HTML a JS)
+    **/
+   document.getElementById('btnClick').addEventListener('click', function(){
+    alert('Cambiando el valor del div')
+    bindings.contenidoDiv.valor = 'Nuevo valor';
+   });
+
+   document.getElementById('txtTexto').addEventListener('input', function(e){
+    bindings.contenidoDiv.valor = e.target.value;
+   });
+
+
+  </script>
+
+</body>
+</html>

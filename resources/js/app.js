@@ -1,68 +1,75 @@
+/***
+ * PROCESOS DE ARRANQUE
+**/
+
 /**
- * La clase SuperListaApp representa a toda nuestra aplicación
- */
-class SuperListaApp {
-	constructor({isProductionEnv = false, swPath = 'sw.js'}) {
-		this.isProd = isProductionEnv;
-		this.swPath = swPath;
+ * BINDINGS (JS -> HTML)
+**/
+const bItemsLista = {
+  __value__: [],
 
-		this.elements = {
-			btnInstalar: document.querySelector('#btnInstalar')
-		}
+  __template__: (props) => `
+    <div class="mdl-card">
+      <div class="mdl-card__title">${props.titulo}</div>
+      <div class="mdl-card__supporting-text">
+        ${props.descripcion}
+      </div>
+      <div class="mdl-card__actions">
+        <button
+          class="
+            mdl-button mdl-js-button
+            mdl-button--fab
+            mdl-js-ripple-effect
+            mdl-button--colored
+          "
+        >
+          <i class="material-icons">preview</i>
+        </button>
+      </div>
+    </div>`,
 
-		this.dialogoInstalar = false;
+  get val() {
+    return this.__value__;
+  },
+  set val(nv = []) {
+    let html = '';
+   
+    nv
+     .map(this.__template__)
+     .forEach(function(item){
+       html += item;
+     });
+ 
+     document.getElementById('items').innerHTML = html
+ 
+     this.__value__ = nv;
+     return this.__value__;
+  }
+};
 
-		this.start();
-	}
+/**
+ * EVENTOS (HTML -> JS)
+**/
 
-	/**
-	 * Inicio de la aplicación.
-	 * Acá vamos a ejecutar todas las operaciones de arranque
-	 */
-	start() {
-		this.registerSw();
-		this.registerEventListeners();
-	}
-
-	/**
-	 * Indicar al Browser que hay un proceso de instalación
-	 * Esto sirve para indicar al Browser que este sitio es un sitio instalable
-	 */
-	registerSw() {
-		if(this.isProd) {
-			navigator.serviceWorker
-				.register(this.swPath)
-				.then(() => console.log("SW habilitado"));
-		}
-	}
-	
-	/**
-	 * Registrar todos los eventos del DOM
-	 */
-	registerEventListeners() {
-		window.addEventListener('beforeinstallprompt', (e) => {
-			e.preventDefault();
-			this.dialogoInstalar = e;
-			this.elements.btnInstalar.disabled = false;
-			this.elements.btnInstalar.addEventListener('click', () => {
-				this.elements.btnInstalar.style.display = 'none';
-
-				this.dialogoInstalar.prompt();
-
-				this.dialogoInstalar.userChoice.then((choiceResult) => {
-					if (choiceResult.outcome === 'accepted') {
-						console.log('User accepted the A2HS prompt');
-					} else {
-						console.log('User dismissed the A2HS prompt');
-					}
-					deferredPrompt = null;
-				});
-			});
-		});
-	}
+// Click en agregar
+document.querySelector('#btnAgregar').onclick = function(e) {
+  e.preventDefault();
+  bItemsLista.val = [
+    { titulo: 'Item 1', descripcion: 'Desc item 1' },
+    { titulo: 'Item 2', descripcion: 'Desc item 2' },
+    { titulo: 'Item 3', descripcion: 'Desc item 3' },
+  ];
 }
 
-new SuperListaApp({
-	isProductionEnv: true,
-	swPath: 'sw.js'
-});
+// Introducir datos en el campo de busqueda
+document.querySelector('#txtBusqueda').onclick = function(e) {}
+
+// Click en borrar
+document.querySelector('#btnBorrar').onclick = function(e) {
+  e.preventDefault();
+}
+
+// Click en editar
+document.querySelector('#btnEditar').onclick = function(e) {
+  e.preventDefault();
+}
