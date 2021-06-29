@@ -8,33 +8,6 @@
 const bItemsLista = {
 	__value__: [],
 
-  /*
-	__template__: (props) => `
-    <div class="mdl-card">
-      <div class="mdl-card__title">${props.titulo}</div>
-      <div class="mdl-card__supporting-text">
-        ${props.descripcion}
-      </div>
-      <div class="mdl-card__actions">
-        <button
-          class="
-            mdl-button mdl-js-button
-            mdl-button--fab
-            mdl-js-ripple-effect
-            mdl-button--colored">
-          <i class="material-icons">create</i>
-        </button>
-        <button
-          class="
-            mdl-button mdl-js-button
-            mdl-button--fab
-            mdl-js-ripple-effect
-            mdl-button--colored">
-          <i class="material-icons">delete</i>
-        </button>
-      </div>
-    </div>`,
-  */
   __template__: (props) => {
 
     const elemento = document.createElement('div');
@@ -59,7 +32,7 @@ const bItemsLista = {
     divActions.appendChild(botonEditar);
 
     botonEditar.onclick = function() {
-      alert('Editando '+props.titulo);
+      Editar(props, 'Editado desde el item', 'Editado desde el item (descripcion)');
     }
 
     const botonBorrar = document.createElement('button');
@@ -68,7 +41,7 @@ const bItemsLista = {
     divActions.appendChild(botonBorrar);
 
     botonBorrar.onclick = function() {
-      alert('Borrando '+props.titulo);
+      Borrar(props);
     }
 
     elemento.appendChild(divActions);
@@ -86,6 +59,7 @@ const bItemsLista = {
 			html.appendChild(item);
 		});
 
+    document.getElementById("items").innerHTML = '';
 		document.getElementById("items").appendChild(html);
 
 		this.__value__ = nv;
@@ -98,13 +72,14 @@ const bItemsLista = {
  **/
 
 // Click en agregar
-document.querySelector("#btnAgregar").onclick = function (e) { // HECHO
+document.querySelector("#btnAgregar").onclick = function (e) { 
 	e.preventDefault();
   // const random = Math.ceil(Math.random() * 100)
   const nuevoIndice = bItemsLista.val.length;
 	bItemsLista.val = [
 		...bItemsLista.val,
 		{
+      id: nuevoIndice,
 			titulo: "NUEVO " + nuevoIndice,
 			descripcion: "NUEVO " + nuevoIndice,
 		},
@@ -112,39 +87,36 @@ document.querySelector("#btnAgregar").onclick = function (e) { // HECHO
 };
 
 // Click en borrar
-document.querySelector("#btnBorrar").onclick = function (e) {
-	e.preventDefault();
+function Borrar (item) {
 
-  const posicionEliminada = 2;
-
-  bItemsLista.val = bItemsLista.val.filter(function(value, posActual){
-    if (posActual == posicionEliminada) {
+  bItemsLista.val = bItemsLista.val.filter(function(value){
+    if (value.id == item.id) {
       return false;
     } else {
       return true;
     }
   });
+
 };
 
 // Click en editar
-document.querySelector("#btnEditar").onclick = function (e) {
-	e.preventDefault();
+function Editar (itemViejo, nuevoTitulo, nuevaDescripcion) {
 
-  const posicionAEditar = 2;
-  const nuevoItem = {
-    titulo: 'Posicion editada',
-    descripcion: 'Esto fue editado mediante btnEditar'
-  }
-
-  bItemsLista.val = bItemsLista.val.map(function(val, posActual){
-    if(posActual == posicionAEditar){
-      return nuevoItem;
+  bItemsLista.val = bItemsLista.val.map(function(val){
+    if(val.id == itemViejo.id){
+      return {
+        id: val.id,
+        titulo: nuevoTitulo,
+        descripcion: nuevaDescripcion
+      };
     } else {
       return val;
     }
   });
+
 };
 
 // Introducir datos en el campo de busqueda
 document.querySelector("#txtBusqueda").onclick = function (e) {
+  // PROPUESTA: Hacer el campo de búsqueda
 };
