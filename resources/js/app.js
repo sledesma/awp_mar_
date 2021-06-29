@@ -80,13 +80,13 @@ const bItemsLista = {
 		return this.__value__;
 	},
 	set val(nv = []) {
-		let html = "";
+		let html = document.createDocumentFragment();
 
 		nv.map(this.__template__).forEach(function (item) {
-			html += item;
+			html.appendChild(item);
 		});
 
-		document.getElementById("items").innerHTML = html;
+		document.getElementById("items").appendChild(html);
 
 		this.__value__ = nv;
 		return this.__value__;
