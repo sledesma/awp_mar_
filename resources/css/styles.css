@@ -37,4 +37,5 @@
 #items .mdl-card .mdl-card__actions .mdl-button {
   float: right;
   font-size: 16px;
+	margin-left: 15px;
 }
