@@ -1,3 +1,3 @@
-Objetos (Concepto de ámbito -this-, Clases, algo de API Object)
-Código asincrónico (Promesas, Async, Awai y Fetch)
-Arquitectura (Como organizar un proyecto, archivos y carpetas)
+Objetos (Concepto de ámbito -this-, Clases, algo de API Object) (OK)
+Código asincrónico (Promesas, Async, Awai y Fetch) (HOY)
+Arquitectura (Como organizar un proyecto, archivos y carpetas) (HOY)

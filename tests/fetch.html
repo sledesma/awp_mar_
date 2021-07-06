@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="nombre"></div>
+
+  <script>
+
+    /**
+     * API Promise
+    **/
+
+    /*
+    Sirven para la comunicación entre un Consumidor de datos y un Proveedor
+
+    Tecnologías PUSH
+      Devuelven un único valor: Promise (SI inicia la comunicación)
+      Devuelven varios valores: (Patrón de diseño Observer/Observable) (SI inicia la comunicación)
+    Tecnologías PULL
+      Devuelven un único valor: Function (No inicia la comunicación)
+      Devuelven muchos valores: Iterator | Generator (NO inicia la comunicación)
+    */
+
+    // PROVEEDORES DE DATOS
+    function unSoloMensaje() {
+      console.log("Hola mundo desde FUNCTION")
+      return "Hola mundo"; // Este codigo NO se ejecuta cuando se crea la función
+    }
+
+    function *variosMensajes() {
+      console.log("Hola mundo desde GENERATOR")
+      yield "Mensaje 1";  // Este código NO se ejecuta cuando se crea el generador
+      yield "Mensaje 2";
+      yield "Mensaje 3";
+    }
+
+    // Una promesa representa una OPERACION ASINCRÓNICA que puede ser RESUELTA o RECHAZADA
+    const promesa = new Promise((resolver, rechazar) => {
+      // Este código se ejecuta cuando se crea la promesa
+      //console.log("Hola mundo desde PROMISE")
+      //resolver({ msj: "Hola mundo desde una PROMESA RESUELTA" }) // Resolver es una función que notifica al unico consumidor que está resuelta
+    });
+    // Se asemejar a SOCKETS.IO
+
+
+
+    // CONSUMIDORES
+    /*
+    console.log(unSoloMensaje())
+
+    const mensajes = variosMensajes()
+    console.log(mensajes.next());
+    */
+
+    promesa.then(function(valor){
+      // Ejecutada CUANDO LA PROMESA SE RESUELVA
+      console.log(valor)
+    });
+
+  </script>
+</body>
+</html>
