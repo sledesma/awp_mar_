@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<button>Click</button>
+		<script src="https://unpkg.com/@reactivex/rxjs@6.6.7/dist/global/rxjs.umd.js"></script>
+		<script>
+      // PROVEEDOR
+			const button = rxjs.fromEvent(document.querySelector("button"), "click");
+
+      // CONSUMIDORES
+			button.subscribe(function () {
+				console.log("Hola");
+			});
+      button.subscribe(function () {
+				console.log("Ey");
+			});
+      button.subscribe(function () {
+				console.log("No te vayas");
+			});
+		</script>
+	</body>
+</html>

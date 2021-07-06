@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="https://unpkg.com/@reactivex/rxjs@6.6.7/dist/global/rxjs.umd.js"></script>
+  <script>
+
+    const xhr = new rxjs.Observable(sub => {
+      const __xhr__ = new XMLHttpRequest();
+      __xhr__.responseType = "json";
+      __xhr__.open('GET', 'https://jsonplaceholder.typicode.com/posts/')
+      __xhr__.send();
+
+      __xhr__.onprogress = function(e) {
+        sub.next({ state: 'progress', event: e })
+      }
+      __xhr__.onerror = function(e) {
+        sub.next({ state: 'error', event: e })
+      }
+      __xhr__.onload = function() {
+        sub.next({ state: 'complete', data: __xhr__.response })
+      }
+    });
+
+    xhr.subscribe(a => {
+      console.log(a)
+    });
+
+  </script>
+</body>
+</html>

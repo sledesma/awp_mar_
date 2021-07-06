@@ -1,0 +1,11 @@
+Las tecnologías PUSH y PULL son estrategias para la comunicación entre CONSUMIDORES y PROVEEDORES de datos.
+
+Tecnologías PUSH: Proveedor activo / Consumidor pasivo
+  Se comparte un único valor: Promise (SI inicia la comunicación)
+  Se comparte varios valores: (Patrón de diseño Observer/Observable) (SI inicia la comunicación)
+
+Tecnologías PULL: Proveedor pasivo / Consumidor activo
+  Se comparte un único valor: Function (No inicia la comunicación)
+  Se comparte muchos valores: Iterator | Generator (NO inicia la comunicación)
+
+* Activo = Quien inicia la comunicación
