@@ -17,13 +17,6 @@
 
     /*
     Sirven para la comunicación entre un Consumidor de datos y un Proveedor
-
-    Tecnologías PUSH
-      Devuelven un único valor: Promise (SI inicia la comunicación)
-      Devuelven varios valores: (Patrón de diseño Observer/Observable) (SI inicia la comunicación)
-    Tecnologías PULL
-      Devuelven un único valor: Function (No inicia la comunicación)
-      Devuelven muchos valores: Iterator | Generator (NO inicia la comunicación)
     */
 
     // PROVEEDORES DE DATOS
@@ -44,6 +37,7 @@
       // Este código se ejecuta cuando se crea la promesa
       //console.log("Hola mundo desde PROMISE")
       //resolver({ msj: "Hola mundo desde una PROMESA RESUELTA" }) // Resolver es una función que notifica al unico consumidor que está resuelta
+      //rechazar('Eror 404 - Doble R not found');
     });
     // Se asemejar a SOCKETS.IO
 
@@ -60,7 +54,11 @@
     promesa.then(function(valor){
       // Ejecutada CUANDO LA PROMESA SE RESUELVA
       console.log(valor)
-    });
+    })
+
+    promesa.catch(function(valor){
+      console.log(valor);
+    })
 
   </script>
 </body>
