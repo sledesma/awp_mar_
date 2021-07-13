@@ -63,10 +63,12 @@
 
           case 'fetching':
             console.log('[Worker] Obteniendo datos y armando objeto');
+            console.log('Cargando...')
             break;
 
           case 'ready':
             console.log('[Worker] Listo para recibir peticiones');
+            console.log('Cargado')
             bootstrap();
             break;
 

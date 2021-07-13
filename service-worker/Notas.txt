@@ -1,0 +1,9 @@
+¿QUE ES?
+Es un proxy de red programable
+
+¿PARA QUE SIRVE?
+Para el precacheo de los archivos estáticos (AWP)
+
+¿COMO SE USA?
+1. Registrandolo en Window
+2. Asignando callbacks a su ciclo de vida
