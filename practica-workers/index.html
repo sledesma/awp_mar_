@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+<body>
+  
+  <h2 class="titulo">PokeApi Search App</h2>
+  <div class="barra-busqueda">
+    <div class="campos">
+      <input type="text" placeholder="Berry name" data-search="berryName">
+      <input type="text" placeholder="Size" data-search="size">
+    </div>
+    <div class="boton">
+      <button data-action="submit">Buscar</button>
+    </div>
+  </div>
+  <div class="results"></div>
+
+  <script>
+    (function(){
+
+      const apiWorker = new Worker('api-worker/api.worker.js');
+      const searchData = {}
+
+
+      function changeSearch(e) {
+        searchData[e.target.dataset.search] = e.target.value;
+        console.log(searchData);
+      }
+
+      function performAction(e) {
+        switch(e.target.dataset.action) {
+          case 'submit':
+            apiWorker.postMessage(searchData);
+            return;
+        }
+      }
+
+
+      function bootstrap() {
+
+        document.querySelectorAll('*[data-search]').forEach(item => {
+          item.addEventListener('input', changeSearch);
+          item.addEventListener('change', changeSearch);
+        });
+
+        document.querySelectorAll('*[data-action]').forEach(item => {
+          item.addEventListener('click', performAction);
+        });
+
+      }
+
+      apiWorker.addEventListener('message', (e) => {
+
+        switch(e.data.status) {
+
+          case 'fetching':
+            console.log('[Worker] Obteniendo datos y armando objeto');
+            break;
+
+          case 'ready':
+            console.log('[Worker] Listo para recibir peticiones');
+            bootstrap();
+            break;
+
+          case 'filtered':
+            console.log(e.data)
+            break;
+
+          case 'error':
+            console.error('[Worker] Error en el Worker');
+            break;
+
+        }
+
+      });
+
+      bootstrap();
+
+    })();
+  </script>
+</body>
+</html>

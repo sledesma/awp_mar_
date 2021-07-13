@@ -1,0 +1,16 @@
+¿QUE ES?
+Un Web Worker es un código JavaScript ejecutado en segundo plano, en un contexto diferente de Window
+
+¿PARA QUE SIRVE?
+Sirve para ejecutar procesos pesados sin sobrecargar el hilo principal (Multi-threading)
+
+¿COMO SE USA?
+1°. Crear el Worker (new Worker()) en el Window
+2°. Comunicación Window => Worker (Window envia un mensaje y Worker recibe el mensaje)
+2°. Comunicación Worker => Window (Worker envia un mensaje y Window recibe el mensaje)
+
+                  postMessage               evento 'message'
+
+En Worker         envio msj a Window        cuando recibo msj de Window
+
+En Window         envio msj a Worker        cuando recibo msj de Worker

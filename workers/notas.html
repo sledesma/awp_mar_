@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // Ámbito global => Hilo de ejecución de este código
+
+    var b = 20;
+
+    function a() { // La función es un cierre del ámbito local => Da la chance de cambiarlo
+      console.log("AMBITO LOCAL", this);
+      console.log("AMBITO GLOBAL", self);
+    }
+
+    // a(); // La llamo desde el ámbito global => ambito local de la fn = ambito global
+
+    // Workers => Ejecutan un código JS FUERA de Window
+    // Se PARECE a los SOCKETS, pero del lado del cliente
+  </script>
+</body>
+</html>
