@@ -5,7 +5,8 @@
  * un ServiceWorker activo.
  */
 self.addEventListener('install', e => {
-
+  // Instalación => Copiar los archivos estáticos a la caché
+  console.log(e);
 });
 
 /**
@@ -15,7 +16,8 @@ self.addEventListener('install', e => {
  * de este ServiceWorker
  */
 self.addEventListener('activate', e => {
-
+  // Actualización => Actualizar la caché a la última versión
+  console.log(e)
 });
 
 /**
@@ -28,5 +30,24 @@ self.addEventListener('activate', e => {
  * petición saliente
  */
 self.addEventListener('fetch', e => {
+  // Proceso principal => Interceptar todas las peticiones HTTP salientes y buscar responderlas desde la caché.
+  const whiteList = [
+    'http://127.0.0.1:5501/index.html',
+    'http://127.0.0.1:5501/',
+    'http://127.0.0.1:5501/sw.js',
+    'http://127.0.0.1:5501/style.css'
+  ]
+  const urlActual = e.request.url;
 
+  if(whiteList.includes(urlActual)) {
+    // Esta permitido
+    fetch(e.request).then(
+      r => e.respondWith(r)
+    )
+    
+  } else {
+    // NO esta permitido
+    e.respondWith(new Response({}, { status: 404 }));
+  }
 });
+
