@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <script>
+
+    /**
+     * Offline-First: Pedimos los datos, primero, desde un dispositivo offline; y, si
+     * no se encuentran ahí, vamos a buscarlo a la fuente online.
+     * 
+     * Online -------------------------- VOS -------------------------XX Offline
+     * 
+     * ¿Cuan cambiante es esto que estoy solicitando?
+     */ 
+    async function ofGet(url) {
+
+      // Convertir la url en Request
+      const request = new Request(url);
+
+      let diaActual = new Date();
+      diaActual = `${diaActual.getUTCFullYear()}${diaActual.getUTCMonth() + 1}${diaActual.getUTCDate()}`
+
+      const cacheName = `DATOS-PRUEBA-${diaActual}`;
+
+      // Verificar si existe en la caché
+      const cache = await caches.open(cacheName);
+      const cacheRes = await cache.match(request);
+
+      if(!cacheRes) { // Si no existe en la caché...
+        // Pedir desde el recurso online
+        console.log("Solicitando datos desde la red...");
+        const onlineRes = await fetch(request);
+        console.log(onlineRes)
+        // Almacenar en la caché
+        await cache.put(request, onlineRes);
+
+      } else { // Si existe en la caché...
+        // Lo devuelvo directamente
+        console.log('Solicitando datos desde la cache...');
+        console.log(cacheRes);
+      }
+
+      // Limpiar la cache
+      let listaCaches = await caches.keys()
+
+      listaCaches = listaCaches.filter((val) => val != cacheName);
+
+      for (let i = 0; i < listaCaches.length; i++) {
+        const cacheActual = listaCaches[i];
+        await caches.delete(cacheActual);
+      }
+
+    }
+
+
+    ofGet('https://jsonplaceholder.typicode.com/posts/')
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+Entrada: UNA PAGINA HTML/CSS/JS, CON IMG/AUDIO...
+
+Operaciones / Pasos:
+  1. Crear el manifest.json y los íconos, y lo incluimos en el HTML. En este paso le INDICAMOS al navegador que este sitio es una aplicación instalable.
+  2. Crear el ServiceWorker; con los eventos "install", "activate" y "fetch".
+  3. Definir estrategia de precacheo
+  4.
+  5.
+
+Salida: LA MISMA ENTRADA, PERO FUNCIONANDO OFFLINE E INSTALABLE

@@ -1,0 +1,6 @@
+Precacheo => ALAMACENAR EN LA CACHE ALGO QUE VOY A USAR DESPUES
+Almacenar el dato en un lugar de más fácil acceso
+
+CACHE (Browser) => Almacen de pares Peticion / Respuesta offline. En otras palabras: almacena en la máquina cliente la respuesta HTTP correspondiente a determinada petición HTTP.
+
+
